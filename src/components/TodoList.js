@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
-import {Text /*StyleSheet*/} from 'react-native';
-import {Container} from 'native-base';
+import {Text, SafeAreaView /*StyleSheet*/} from 'react-native';
 
 import {TodoStateContext} from '../contexts/Todos';
 
@@ -8,9 +7,9 @@ export default function TodoList(props) {
   const todos = useContext(TodoStateContext);
   console.log('todos', todos);
   return (
-    <Container>
+    <SafeAreaView>
       <Text>{props.name}</Text>
-    </Container>
+    </SafeAreaView>
   );
 }
 

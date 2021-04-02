@@ -3,7 +3,7 @@ import {Text, SafeAreaView, Button, StyleSheet} from 'react-native';
 import {TodoStateContext} from '../contexts/Todos';
 import SC from '../constants/screens.constants';
 
-export default function Home({navigation}) {
+export default function New({navigation}) {
   const todos = useContext(TodoStateContext);
 
   const pressHandler = screen => {
@@ -14,7 +14,7 @@ export default function Home({navigation}) {
     <SafeAreaView style={styles.TodoListContainer}>
       <Text>{JSON.stringify(todos)}</Text>
       <Button title={SC.HISTORY} onPress={() => pressHandler(SC.HISTORY)} />
-      <Button title={SC.NEW} onPress={() => pressHandler(SC.NEW)} />
+      <Button title={SC.HOME} onPress={() => pressHandler(SC.HOME)} />
     </SafeAreaView>
   );
 }

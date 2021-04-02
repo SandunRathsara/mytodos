@@ -1,17 +1,20 @@
 import React, {useContext} from 'react';
 import {Text, SafeAreaView, Button, StyleSheet} from 'react-native';
 import {TodoStateContext} from '../contexts/Todos';
+import SC from '../constants/screens.constants';
 
 export default function History({navigation}) {
   const todos = useContext(TodoStateContext);
 
-  const pressHandler = () => {
-    navigation.goBack();
+  const pressHandler = screen => {
+    navigation.navigate(screen);
   };
+
   return (
     <SafeAreaView style={styles.TodoListContainer}>
       <Text>{JSON.stringify(todos)}</Text>
-      <Button title={'back'} onPress={pressHandler} />
+      <Button title={SC.NEW} onPress={() => pressHandler(SC.NEW)} />
+      <Button title={SC.HOME} onPress={() => pressHandler(SC.HOME)} />
     </SafeAreaView>
   );
 }
