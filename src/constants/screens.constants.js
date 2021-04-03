@@ -1,5 +1,5 @@
 export default {
-  HOME: 'Home',
-  HISTORY: 'History',
-  NEW: 'New',
+	HOME: 'Home',
+	HISTORY: 'History',
+	NEW: 'New',
 };
