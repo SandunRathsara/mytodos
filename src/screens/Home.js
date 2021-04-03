@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
-import { Text, View, SafeAreaView, Button, StyleSheet } from 'react-native';
-import { Header } from 'react-native-elements';
+import { Text, SafeAreaView, Button, StyleSheet } from 'react-native';
 import { TodoStateContext } from '../contexts/Todos';
 import SC from '../constants/screens.constants';
-import Icon from 'react-native-vector-icons/AntDesign';
 
 export default function Home({ navigation }) {
 	const todos = useContext(TodoStateContext);
@@ -11,10 +9,11 @@ export default function Home({ navigation }) {
 	const pressHandler = screen => {
 		navigation.navigate(screen);
 	};
-
 	return (
 		<SafeAreaView style={styles.TodoListContainer}>
-			<Text>{JSON.stringify(todos)}</Text>
+			{todos.todos.map((item, i) => (
+				<Text key={i}>{JSON.stringify(item.title)}</Text>
+			))}
 			<Button title={SC.HISTORY} onPress={() => pressHandler(SC.HISTORY)} />
 			<Button title={SC.NEW} onPress={() => pressHandler(SC.NEW)} />
 		</SafeAreaView>

@@ -1,27 +1,20 @@
 /**
  * IMPORTANT!!! this reducer is written with the intention of using immer reducer
  *
- * @type {{description: null, id: null, title: null, done: boolean}}
+ * @type {{todos: [], newTodo: {createdAt: null, parentTask: null, dueDate: null, description: null, id: Date, title: null, dueTime: null, done: boolean}}}
  */
 export const initialState = {
-	todos: [
-		{
-			id: '001',
-			title: 'DigiEye',
-			description: 'Create the draw pad',
-			done: false,
-		},
-		{
-			id: '002',
-			title: 'DigiEx',
-			description: 'Learn React Native',
-			done: false,
-		},
-	],
-	id: null,
-	title: null,
-	description: null,
-	done: false,
+	todos: [],
+	newTodo: {
+		id: new Date(),
+		title: null,
+		description: null,
+		dueDate: null,
+		dueTime: null,
+		done: false,
+		createdAt: null,
+		parentTask: null,
+	},
 };
 
 export const ACTIONS = {
@@ -32,12 +25,26 @@ export const ACTIONS = {
 export function TodoReducer(draft, action) {
 	switch (action.type) {
 		case ACTIONS.FIELD:
-			draft[action.fieldName] = action.payload;
+			draft.newTodo[action.fieldName] = action.payload;
 			return;
 		case ACTIONS.ADD:
-			draft.todos.append(action.payload);
+			draft.newTodo = { ...draft.newTodo, createdAt: Date.now() };
+			draft.todos = [...draft.todos, draft.newTodo];
+			draft.newTodo = initialState.newTodo;
 			return;
 		default:
 			return;
 	}
+}
+
+export function TodoReducerMethods(dispatch) {
+	function onChange(fieldName, payload) {
+		dispatch({ type: ACTIONS.FIELD, fieldName, payload });
+	}
+
+	function addTodo() {
+		dispatch({ type: ACTIONS.ADD });
+	}
+
+	return { onChange, addTodo };
 }

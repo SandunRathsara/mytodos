@@ -1,9 +1,9 @@
-import { DARK } from './theme.constants';
+import { THEME } from './theme.constants';
 
 export const headerStyles = {
 	title: 'MyTodos',
-	headerStyle: { backgroundColor: DARK.DARK },
-	headerTintColor: DARK.LIGHT,
+	headerStyle: { backgroundColor: THEME.LESS_DARK },
+	headerTintColor: THEME.LIGHT,
 	headerTitleStyle: {
 		fontWeight: 'bold',
 		alignSelf: 'center',
@@ -11,10 +11,10 @@ export const headerStyles = {
 };
 
 export const tabStyles = {
-	activeTintColor: DARK.LIGHT,
-	inactiveBackgroundColor: DARK.LESS_DARK,
-	activeBackgroundColor: DARK.DARK,
-	inactiveTintColor: DARK.LIGHT,
+	activeTintColor: THEME.LIGHT,
+	inactiveBackgroundColor: THEME.LESS_DARK,
+	activeBackgroundColor: THEME.DARK,
+	inactiveTintColor: THEME.LIGHT,
 };
 
 export const ICONS = {

@@ -12,7 +12,6 @@ export default function History({ navigation }) {
 
 	return (
 		<SafeAreaView style={styles.TodoListContainer}>
-			<Text>{JSON.stringify(todos)}</Text>
 			<Button title={SC.NEW} onPress={() => pressHandler(SC.NEW)} />
 			<Button title={SC.HOME} onPress={() => pressHandler(SC.HOME)} />
 		</SafeAreaView>
