@@ -9,14 +9,13 @@ import SC from '../constants/screens.constants';
 export default function (props) {
 	const [showDatePicker, setShowDatePicker] = useState(false);
 
-	const todos = useContext(TodoStateContext);
-	const { newTodo } = todos;
+	const { newTodo } = useContext(TodoStateContext);
 	const { onChange, addTodo } = TodoReducerMethods(useContext(TodosDispatchContext));
 
 	const onPress = e => {
 		e.preventDefault();
 		addTodo({ title: newTodo.title, description: newTodo.description, dueDate: newTodo.dueDate });
-		props.navigation.navigate(SC.HOME);
+		props.navigation.navigate(SC.HOME_NAV, { screen: SC.HOME });
 	};
 	const onDateChange = value => {
 		setShowDatePicker(false);
