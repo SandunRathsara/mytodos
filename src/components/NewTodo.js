@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Text, Pressable, SafeAreaView, StyleSheet } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { TodosDispatchContext, TodoStateContext, TodoReducerMethods } from '../contexts/Todos';
+import { TodosDispatchContext, TodoStateContext, useTodoReducerMethods } from '../contexts/Todos';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { THEME } from '../constants/theme.constants';
 import SC from '../constants/screens.constants';
@@ -10,7 +10,7 @@ export default function (props) {
 	const [showDatePicker, setShowDatePicker] = useState(false);
 
 	const { newTodo } = useContext(TodoStateContext);
-	const { onChange, addTodo } = TodoReducerMethods(useContext(TodosDispatchContext));
+	const { onChange, addTodo } = useTodoReducerMethods(useContext(TodosDispatchContext));
 
 	const onPress = e => {
 		e.preventDefault();
@@ -24,8 +24,8 @@ export default function (props) {
 
 	return (
 		<SafeAreaView style={styles.NewTodoContainer}>
-			<Input placeholder="Title" value={newTodo.title} onChangeText={value => onChange('title', value)} />
-			<Input placeholder="description" value={newTodo.description} onChangeText={value => onChange('description', value)} />
+			<Input style={styles.textColor} placeholder="Title" value={newTodo.title} onChangeText={value => onChange('title', value)} />
+			<Input style={styles.textColor} placeholder="Description" value={newTodo.description} onChangeText={value => onChange('description', value)} />
 			<Pressable onPressIn={() => setShowDatePicker(true)}>
 				<Text style={styles.DueDate}>{newTodo.dueDate === null ? 'Due Date' : new Date(newTodo.dueDate).toDateString()}</Text>
 			</Pressable>
@@ -44,15 +44,18 @@ export default function (props) {
 }
 
 const styles = StyleSheet.create({
+	textColor: {
+		color: 'azure',
+	},
 	NewTodoContainer: {
 		flex: 1,
 		justifyContent: 'center',
-		backgroundColor: 'azure',
+		backgroundColor: THEME.DARK,
 	},
 	DueDate: {
 		margin: 10,
 		alignSelf: 'stretch',
-		color: 'grey',
+		color: 'azure',
 		fontSize: 16,
 		paddingLeft: 3,
 		paddingBottom: 10,

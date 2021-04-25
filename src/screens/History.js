@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Text, SafeAreaView, Button, StyleSheet } from 'react-native';
 import { TodoStateContext } from '../contexts/Todos';
 import SC from '../constants/screens.constants';
+import { THEME } from '../constants/theme.constants';
 
 export default function History({ navigation }) {
 	const todos = useContext(TodoStateContext);
@@ -24,6 +25,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'azure',
+		backgroundColor: THEME.DARK,
 	},
 });

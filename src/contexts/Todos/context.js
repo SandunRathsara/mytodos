@@ -1,6 +1,4 @@
-import React, { createContext } from 'react';
-
-import { useImmerReducer as useReducer } from 'use-immer';
+import React, { createContext, useReducer } from 'react';
 import { initialState, TodoReducer } from './reducer';
 
 export const TodoStateContext = createContext();
